@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -14,10 +15,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         username: configService.get('POSTGRES_USER'),
         password: configService.get('POSTGRES_PASSWORD'),
         database: configService.get('POSTGRES_DB'),
-        entities: [__dirname + '/../**/*.entity.ts'],
-        synchronize: true
-      })
-    })
-  ]
+        entities: [__dirname + '/../**/*.entity.js'],
+        migrations: ['src/migrations/*.ts', 'dist/migrations/*{.ts,.js}'],
+        cli: {
+          migrationsDir: 'src/migrations',
+        },
+        synchronize: true,
+      }),
+    }),
+  ],
 })
 export class DatabaseModule {}
