@@ -4,15 +4,15 @@ import { Repository } from 'typeorm';
 
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import PostEntity from './entities/post.entity';
+import Post from './post.entity';
 
 
 @Injectable()
 export default class PostsService {
   constructor(
     // eslint-disable-next-line prettier/prettier
-    @InjectRepository(PostEntity)
-    private postsRepository: Repository<PostEntity>
+    @InjectRepository(Post)
+    private postsRepository: Repository<Post>
   ) { }
 
 

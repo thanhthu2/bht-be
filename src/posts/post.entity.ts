@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
  
 @Entity()
-class PostEntity {
+class Post {
   @PrimaryGeneratedColumn()
   // eslint-disable-next-line prettier/prettier
   public id: number;
@@ -13,4 +13,4 @@ class PostEntity {
   public content: string;
 }
  
-export default PostEntity;
+export default Post;
