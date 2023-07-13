@@ -29,9 +29,15 @@ export default class PostsController {
   }
 
   @Post()
-  @UseGuards(JwtAuthenticationGuard)
+  // @UseGuards(JwtAuthenticationGuard)
   async createPost(@Body() post: CreatePostDto) {
     return this.postsService.createPost(post);
+  }
+
+  @Post('/mutiple')
+  // @UseGuards(JwtAuthenticationGuard)
+  async createMutiplePosts(@Body() posts: CreatePostDto[]) {
+    return this.postsService.createMutiplePosts(posts);
   }
 
   @Put(':id')

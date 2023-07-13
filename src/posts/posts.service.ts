@@ -30,9 +30,14 @@ export default class PostsService {
   }
 
   async createPost(post: CreatePostDto) {
-    const newPost = await this.postsRepository.create(post);
-    await this.postsRepository.save(newPost);
+    // const newPost = await this.postsRepository.create(post);
+   const newPost = await this.postsRepository.save(post);
     return newPost;
+  }
+
+  async createMutiplePosts(posts: CreatePostDto[]) {
+    const newPosts = await this.postsRepository.save(posts);
+    return newPosts
   }
 
   async updatePost(id: number, post: UpdatePostDto) {
