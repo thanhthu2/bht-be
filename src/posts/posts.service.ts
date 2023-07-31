@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import Post from './post.entity';
+import { Pagination } from 'nestjs-typeorm-paginate';
 
 
 @Injectable()
@@ -16,8 +17,24 @@ export default class PostsService {
   ) { }
 
 
-  getAllPosts() {
-    return this.postsRepository.find();
+  async getAllPosts(page = 1, pageSize = 20) :Promise<Pagination<Post>> {
+    const [results, totalItems] = await this.postsRepository
+      .createQueryBuilder('post')
+      .orderBy('post.updatedAt', 'DESC')
+      .skip((page - 1) * pageSize)
+      .take(pageSize)
+      .getManyAndCount()
+
+      return {
+        items:results,
+        meta: {
+          totalItems,
+          currentPage:page,
+          itemCount:results.length,
+          itemsPerPage:pageSize
+        }
+      }
+    // return this.postsRepository.find();
   }
 
 

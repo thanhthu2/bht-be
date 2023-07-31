@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './config/typeorm.config';
 import { PostsModule } from './posts/posts.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { EndpointModule } from './endpoint/endpoint.module';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
         JWT_SECRET: Joi.string().required(),
         JWT_EXPIRATION_TIME: Joi.string().required()
       })
-    })
+    }),
+    EndpointModule
   ],
   controllers: [],
   providers: []
