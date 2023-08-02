@@ -20,16 +20,16 @@ export class EndpointController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.endpointService.findOne(+id);
+    return this.endpointService.getEndpointById(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEndpointDto: UpdateEndpointDto) {
-    return this.endpointService.update(+id, updateEndpointDto);
+  update(@Param('id') id: number, @Body() updateEndpointDto: UpdateEndpointDto) {
+    return this.endpointService.updateEndpoint(id, updateEndpointDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.endpointService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.endpointService.deleteEndpoint(+id);
   }
 }

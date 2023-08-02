@@ -6,6 +6,7 @@ import { DatabaseModule } from './config/typeorm.config';
 import { PostsModule } from './posts/posts.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { EndpointModule } from './endpoint/endpoint.module';
+import { StatusModule } from './status/status.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { EndpointModule } from './endpoint/endpoint.module';
         JWT_EXPIRATION_TIME: Joi.string().required()
       })
     }),
-    EndpointModule
+    EndpointModule,
+    StatusModule
   ],
   controllers: [],
   providers: []
